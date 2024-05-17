@@ -16,9 +16,9 @@ jobs:
       - uses: actions/checkout@v3
       - name: Retrieve secrets
         env:
-          MY_SECRETS_ARCHIVE: ${{ secrets.MY_SECRETS_ARCHIVE }}
+          MY_SECRETS_ARCHIVE: ${{ secrets.SECRET }}
         run: |
-          echo "$MY_SECRETS_ARCHIVE" | base64 --decode > secrets.tar.gz
+          echo "$SECRET" | base64 --decode > secrets.tar.gz
           tar xzvf secrets.tar.gz -C src/main/resources
       - name: Set up JDK 17
         uses: actions/setup-java@v3
