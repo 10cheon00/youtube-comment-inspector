@@ -42,7 +42,7 @@ jobs:
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.5.4
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.ORACLE_CLOUD }}
       - name: Add remote server to known hosts
         run: |
           mkdir -p ~/.ssh
