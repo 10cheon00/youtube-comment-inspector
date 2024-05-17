@@ -5,6 +5,10 @@ import com.hackertonhuru.youtubecommentinspector.dto.CommentStatisticDto;
 import com.hackertonhuru.youtubecommentinspector.util.YoutubeUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -32,7 +36,13 @@ public class YoutubeLinkController {
     public CommentStatisticDto getComments(@RequestParam String videoId, HttpServletRequest request) throws Exception {
         List<String> allComment = youtubeUtil.getAllComment(videoId);
         String url = "129.154.211.230:5000/anaysis";
-        CommentAnalysisDto commentAnalysisDto = restTemplate.getForObject(url, CommentAnalysisDto.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+        MultiValueMap<String, List<String>> map = new LinkedMultiValueMap<>();
+        map.add("comment", allComment);
+
+        CommentAnalysisDto commentAnalysisDto = restTemplate.postForObject(url, map, CommentAnalysisDto.class);
         return new CommentStatisticDto(
                 commentAnalysisDto.rate(),
                 new PositiveAndNegativeCommentDto(
