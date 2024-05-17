@@ -48,8 +48,8 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan ${{ secrets.HOST }} >> ~/.ssh/known_hosts
       - name: SCP transfer
-        run: scp *.jar ${{ secrets.USER }}@${{ secrets.HOST }}:~/cicd
+        run: scp *.jar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:~/cicd
       - name: Execute remote commands
         run: |
-          ssh -v ${{ secrets.USER }}@${{ secrets.HOST }} "sudo fuser -k 8080/tcp || true"
-          ssh -v ${{ secrets.USER }}@${{ secrets.HOST }} "sudo nohup /usr/bin/java -jar ~/cicd/*.jar  > ~/cicd/nohup.log 2>&1 &"
+          ssh -v ${{ secrets.USERNAME }}@${{ secrets.HOST }} "sudo fuser -k 8080/tcp || true"
+          ssh -v ${{ secrets.USERNAME }}@${{ secrets.HOST }} "sudo nohup /usr/bin/java -jar ~/cicd/*.jar  > ~/cicd/nohup.log 2>&1 &"
