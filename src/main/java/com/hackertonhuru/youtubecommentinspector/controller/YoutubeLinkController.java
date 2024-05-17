@@ -29,6 +29,7 @@ public class YoutubeLinkController {
     @GetMapping("comments")
     public List<String> getComments(@RequestParam String videoId, HttpServletRequest request) throws Exception {
         List<String> allComment = youtubeUtil.getAllComment(videoId);
+        //asdf
         //
         // request external cloud ai server
         //
