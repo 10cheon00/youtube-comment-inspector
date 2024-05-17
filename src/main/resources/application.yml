@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: youtube-comment-inspector
+  profiles:
+    include: secret
