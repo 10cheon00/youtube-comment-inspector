@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: add permission
-        run: chmod +x gradlew
+        run: chmod +x ./gradlew
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
