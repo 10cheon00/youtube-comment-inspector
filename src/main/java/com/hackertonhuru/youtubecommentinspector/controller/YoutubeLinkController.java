@@ -22,9 +22,9 @@ public class YoutubeLinkController {
     private final RestTemplate restTemplate;
 
     @Autowired
-    public YoutubeLinkController(YoutubeUtil youtubeUtil, RestTemplate restTemplate) {
+    public YoutubeLinkController(YoutubeUtil youtubeUtil) {
         this.youtubeUtil = youtubeUtil;
-        this.restTemplate = restTemplate;
+        this.restTemplate = new RestTemplate();
     }
 
     @GetMapping("")
